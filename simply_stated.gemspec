@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/simply_stated.rb",
+     "simply_stated.gemspec",
      "test/helper.rb",
      "test/test_simply_stated.rb"
   ]
