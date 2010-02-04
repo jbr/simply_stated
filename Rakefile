@@ -12,7 +12,7 @@ begin
     gem.authors = ["Jacob Rothstein"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_dependency 'freighthopper', '>= 0.1.3'
-    gem.add_dependency 'active_record'
+    gem.add_dependency 'activerecord'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
