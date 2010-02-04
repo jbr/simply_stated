@@ -2,6 +2,10 @@ h1. simply_stated
 
 Yet another state machine.
 
+h2. Continuous Integration
+
+See "run>code>run":http://runcoderun.com/jbr/simply_stated for the latest build status.  It should be green.
+
 h2. Note on Patches/Pull Requests
  
 * Fork the project.
