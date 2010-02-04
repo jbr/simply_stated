@@ -22,9 +22,9 @@ ActiveRecord::Base.establish_connection config['test']
 load(dirname + "/schema.rb")
 
 require 'simply_stated'
-require File.expand_path(dirname + '/../init.rb')
 
 Dir[dirname + '/models/*'].each {|model| require model}
+$:.unshift File.instance_eval { expand_path join(dirname, "models") }
 
   
 class Test::Unit::TestCase

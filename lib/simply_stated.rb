@@ -1,3 +1,4 @@
+require 'set'
 module SimplyStated
   def self.included(klass)
     klass.instance_eval do
@@ -8,6 +9,7 @@ module SimplyStated
       named_scope :in_state, lambda {|*s| {:conditions => ['state in (?)', s.map(&:to_s)]}}
       named_scope :not_in_state, lambda {|*s| {:conditions => ['state not in (?)', s.map(&:to_s)]}}
       self.state_validation_hash = {}
+      self.states = Set.new
     end
   end
   
@@ -33,7 +35,7 @@ module SimplyStated
     def state(state_name, &blk)
       state_name = state_name.to_sym
       State.new(state_name, self).instance_eval(&blk) if blk
-      (self.states ||= []) << state_name
+      self.states << state_name
       (self.state_validation_hash[state_name] ||= []) << state_name
       
       define_method(:"in_state_#{state_name}?") {state == state_name}
