@@ -5,6 +5,8 @@ module SimplyStated
       before_validation :transition
       cattr_accessor :states
       cattr_accessor :state_validation_hash
+      named_scope :in_state, lambda {|*s| {:conditions => ['state in (?)', s.map(&:to_s)]}}
+      named_scope :not_in_state, lambda {|*s| {:conditions => ['state not in (?)', s.map(&:to_s)]}}
       self.state_validation_hash = {}
     end
   end
