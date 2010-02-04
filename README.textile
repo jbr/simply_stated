@@ -6,6 +6,44 @@ h2. Continuous Integration
 
 See "run&gt;code&gt;run":http://runcoderun.com/jbr/simply_stated for the latest build status.  It should be green.
 
+h2. Code
+
+<pre><code>
+  ActiveRecord::Schema.define :version => 0 do
+    create_table :users, :force => true do |t|
+      t.column :name, :string
+      t.column :state, :string, :default => "new"
+    end
+  end
+</code></pre>
+
+<pre><code>
+class User
+  include SimplyStated
+  
+  state :new do
+    transitions { self.state = :has_name if name.present? }
+  end
+  
+  state :has_name do
+    transitions { self.state = :had_name if name.blank? }
+  end
+  
+  state :had_name
+end
+
+user = User.create
+user.state #=> :new
+
+user.update_attributes! :name => "Lombardo"
+user.state #=> :has_name
+
+user.update_attributes! :name => ""
+user.state #=> :had_name
+
+user.state = :explosion #=> raises "invalid state explosion"
+</code></pre>
+
 h2. Note on Patches/Pull Requests
  
 * Fork the project.
