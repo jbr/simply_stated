@@ -51,11 +51,7 @@ module SimplyStated
         (state_validation_hash[base_state.to_sym] ||= []) << state.to_sym
       end
       
-      if blk
-        with_options :if => :"run_validations_for_state_#{state}?" do |validation_proxy|
-          validation_proxy.instance_eval(&blk)
-        end
-      end
+      eval_with_options(:if => :"run_validations_for_state_#{state}?", &blk) if blk
     end
   end
   
