@@ -19,3 +19,10 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+
+test/*.log
+*.sqlite3
+vendor/gems/gems/*
+vendor/gems/specifications/*
+vendor/gems/doc/*
+vendor/gems/environment.rb
